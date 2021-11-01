@@ -18,14 +18,14 @@
  * Plugin version and other meta-data are defined here.
  *
  * @package     mod_wikisearch
- * @copyright   2020 LEARNING.BOG.GE <contact@learning.bog.ge>
+ * @copyright   2021 LEARNING.BOG.GE <info@learning.bog.ge>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'mod_wikisearch';
-$plugin->release = '1.0.0';
-$plugin->version = 2020082503;
+$plugin->release = '1.2.0';
+$plugin->version = 2020091500;
 $plugin->requires = 2017111300;
-$plugin->maturity = MATURITY_ALPHA;
+$plugin->maturity = MATURITY_STABLE;
