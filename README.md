@@ -1,11 +1,10 @@
 # Wiki Search #
 
-Search specified strings in all mod_wiki instances.
-
+This module allows to search for specified strings in all Wiki instances.
 
 ## License ##
 
-2020 LEARNING.BOG.GE <contact@learning.bog.ge>
+2021 LEARNING.BOG.GE <info@learning.bog.ge>
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
