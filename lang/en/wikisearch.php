@@ -35,3 +35,10 @@ $string['wikisearchname_help'] = 'Specify wikisearch name';
 $string['wikisearchsettings'] = 'wikisearch settings';
 $string['pluginadministration'] = 'plugin administration text';
 $string['nonewmodules'] = 'no new modules';
+$string['missingidandcmid'] = 'Missing id and cmid';
+
+$string['searchfield'] = 'Search Wiki:';
+$string['searchfieldplaceholder'] = 'Search for Wiki pages ...';
+$string['search'] = 'Search';
+$string['viewwikipage'] = 'View';
+$string['searchresults'] = 'Search results: ';
