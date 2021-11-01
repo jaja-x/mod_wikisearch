@@ -97,3 +97,18 @@ function wikisearch_delete_instance($id) {
 
     return true;
 }
+
+function wikisearch_search_results($searchstring) {
+    global $DB;
+
+    $sql = "
+        SELECT
+            p.*
+        FROM {wiki_pages} p
+        WHERE
+            p.title LIKE '%" . $searchstring . "%'
+         OR p.cachedcontent LIKE '%" . $searchstring . "%'
+    ";
+
+    return $DB->get_records_sql($sql);
+}
