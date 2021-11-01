@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['modulename'] = 'wikisearch';
-$string['modulenameplural'] = 'modulename plural';
+$string['modulenameplural'] = 'wikisearch plural';
 $string['pluginname'] = 'Wiki Search';
 $string['wikisearch:addinstance'] = 'wikisearch';
 $string['wikisearchfieldset'] = 'wikisearch fieldset';
@@ -34,3 +34,4 @@ $string['wikisearchname'] = 'wikisearch name';
 $string['wikisearchname_help'] = 'Specify wikisearch name';
 $string['wikisearchsettings'] = 'wikisearch settings';
 $string['pluginadministration'] = 'plugin administration text';
+$string['nonewmodules'] = 'no new modules';
