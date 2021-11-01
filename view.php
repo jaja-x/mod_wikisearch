@@ -22,8 +22,9 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require(__DIR__.'/../../config.php');
-require_once(__DIR__.'/lib.php');
+// require files
+require_once '../../config.php';
+require_once './locallib.php';
 
 // Course_module ID, or
 $id = optional_param('id', 0, PARAM_INT);
