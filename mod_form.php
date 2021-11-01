@@ -66,11 +66,6 @@ class mod_wikisearch_mod_form extends moodleform_mod {
             $this->add_intro_editor();
         }
 
-        // Adding the rest of mod_wikisearch settings, spreading all them into this fieldset
-        // ... or adding more fieldsets ('header' elements) if needed for better logic.
-        $mform->addElement('static', 'label1', 'wikisearchsettings', get_string('wikisearchsettings', 'mod_wikisearch'));
-        $mform->addElement('header', 'wikisearchfieldset', get_string('wikisearchfieldset', 'mod_wikisearch'));
-
         // Add standard elements.
         $this->standard_coursemodule_elements();
 
