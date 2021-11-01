@@ -112,3 +112,19 @@ function wikisearch_search_results($searchstring) {
 
     return $DB->get_records_sql($sql);
 }
+
+function wikisearch_highlight_keywords($text, $keywords) {
+    $keywords = explode(' ', $keywords);
+
+    for ($i = 0; $i < count($keywords); $i++) {
+        $highlighted_text = '<span style="
+            background: yellow;
+            padding: 3px;
+            color: #ff5f5f;
+            font-weight: bold;
+        ">' . $keywords[$i] . '</span>';
+        $text = str_ireplace($keywords[$i], $highlighted_text, $text);
+    }
+
+    return $text;
+}
