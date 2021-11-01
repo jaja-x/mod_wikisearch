@@ -24,7 +24,8 @@
 
 // require files
 require_once '../../config.php';
-require_once './locallib.php';
+require_once $CFG->libdir . '/formslib.php';
+require_once './lib.php';
 
 // Course_module ID, or
 $id = optional_param('id', 0, PARAM_INT);
@@ -56,14 +57,74 @@ $modulecontext = context_module::instance($cm->id);
 // $event->add_record_snapshot('wikisearch', $moduleinstance);
 // $event->trigger();
 
-$PAGE->set_url('/mod/wikisearch/view.php', array('id' => $cm->id));
+$url = new moodle_url('/mod/wikisearch/view.php', array('id' => $cm->id));
+$PAGE->set_url($url);
 $PAGE->set_title(format_string($moduleinstance->name));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($modulecontext);
 
+// outputs the header of moodle
 echo $OUTPUT->header();
 
-// content
-echo 'Search results will be here ...';
+class wikisearch_form extends moodleform {
 
+    // Add elements to form
+    public function definition() {
+        global $CFG;
+
+        $mform = $this->_form; // Don't forget the underscore!
+
+        $mform->addElement('text', 'searchfield', get_string('searchfield', 'mod_wikisearch'), 'placeholder="' . get_string('searchfieldplaceholder', 'mod_wikisearch') . '" size="50"');
+        $mform->setType('searchfield', PARAM_TEXT);
+        $mform->setDefault('searchfield', optional_param('searchfield', '', PARAM_TEXT));
+
+        // Add search button
+        $mform->addElement('submit', 'search', get_string('search', 'mod_wikisearch'));
+    }
+
+    // Custom validation should be added here
+    function validation($data, $files) {
+        return [];
+    }
+}
+
+// Instantiate wikisearch_form
+$mform = new wikisearch_form($url);
+
+// displays the form
+$mform->display();
+
+if ($fromform = $mform->get_data()) {
+    $search_results = wikisearch_search_results($fromform->searchfield);
+
+    echo '<h3>' . get_string('searchresults', 'mod_wikisearch') . count($search_results) . '</h3>';
+
+    foreach ($search_results as $wiki_page) {
+        $wiki_page_url = $CFG->wwwroot . '/mod/wiki/view.php?pageid=' . $wiki_page->id;
+        $wiki_page_content = wikisearch_highlight_keywords($wiki_page->cachedcontent, $fromform->searchfield);;
+        ?>
+
+            <table class="generaltable" width="100%">
+                <thead>
+                    <tr>
+                        <th class="header ctitle lastcol" style="text-align:left;" scope="col">
+                        <?php echo $wiki_page->title; ?> (<a href="<?php echo $wiki_page_url; ?>"><?php
+                            echo get_string('viewwikipage', 'mod_wikisearch');
+                        ?></a>)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="lastrow">
+                        <td class="wikisearchresults cell c0 lastcol">
+                            <?php echo $wiki_page_content; ?>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        <?php
+    }
+}
+
+// outputs the footer of moodle
 echo $OUTPUT->footer();
