@@ -1,8 +1,7 @@
 # Wiki Search #
 
-TODO Describe the plugin shortly here.
+Search specified strings in all mod_wiki instances.
 
-TODO Provide more detailed description here.
 
 ## License ##
 
