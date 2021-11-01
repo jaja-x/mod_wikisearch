@@ -62,6 +62,7 @@ $PAGE->set_url($url);
 $PAGE->set_title(format_string($moduleinstance->name));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($modulecontext);
+$PAGE->requires->js_call_amd('mod_wikisearch/wikisearch', 'init', []);
 
 // outputs the header of moodle
 echo $OUTPUT->header();
@@ -105,15 +106,15 @@ if ($fromform = $mform->get_data()) {
         ?>
 
             <table class="generaltable" width="100%">
-                <thead>
+                <thead style="cursor: pointer;">
                     <tr>
-                        <th class="header ctitle lastcol" style="text-align:left;" scope="col">
+                        <th class="header ctitle lastcol" style="text-align: left;" scope="col">
                         <?php echo $wiki_page->title; ?> (<a href="<?php echo $wiki_page_url; ?>"><?php
                             echo get_string('viewwikipage', 'mod_wikisearch');
                         ?></a>)</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="display: none;">
                     <tr class="lastrow">
                         <td class="wikisearchresults cell c0 lastcol">
                             <?php echo $wiki_page_content; ?>
